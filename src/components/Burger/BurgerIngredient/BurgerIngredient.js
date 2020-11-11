@@ -8,7 +8,7 @@ import {
   Cheese,
   Salad,
   Bacon,
-} from './BurderIngredient.module.css';
+} from './BurgerIngredient.module.css';
 import PropTypes from 'prop-types';
 
 const BurderIngredient = ({ type }) => {
@@ -45,7 +45,7 @@ const BurderIngredient = ({ type }) => {
 };
 
 BurderIngredient.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
 };
 
 export default BurderIngredient;
