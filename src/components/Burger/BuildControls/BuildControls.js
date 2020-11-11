@@ -15,6 +15,7 @@ const BuildControls = ({
   removeIngredientHandler,
   disabledButtons,
   totalPrice,
+  purchasable,
 }) => {
   return (
     <div className={classes.BuildControls}>
@@ -30,6 +31,9 @@ const BuildControls = ({
       <p>
         Total Price: <strong>{totalPrice.toFixed(2)}</strong>
       </p>
+      <button className={classes.OrderButton} disabled={!purchasable}>
+        Order now
+      </button>
     </div>
   );
 };

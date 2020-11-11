@@ -18,6 +18,7 @@ export default class BurderBuilder extends Component {
       meat: 0,
     },
     totalPrice: 4,
+    purchasable: false,
   };
 
   addIngredientHandler = type => {
@@ -33,6 +34,7 @@ export default class BurderBuilder extends Component {
       return {
         ingredients,
         totalPrice: oldPrice + INGREDIENT_PRICES[type],
+        purchasable: true,
       };
     });
   };
@@ -51,6 +53,10 @@ export default class BurderBuilder extends Component {
       return {
         ingredients,
         totalPrice: oldPrice - INGREDIENT_PRICES[type],
+        purchasable:
+          Object.values(ingredients).reduce((sum, ingredientAmount) => {
+            return sum + ingredientAmount;
+          }, 0) > 0,
       };
     });
   };
@@ -71,6 +77,7 @@ export default class BurderBuilder extends Component {
           removeIngredientHandler={this.removeIngredientHandler}
           disabledButtons={disabledInfo}
           totalPrice={this.state.totalPrice}
+          purchasable={this.state.purchasable}
         />
       </Fragment>
     );
