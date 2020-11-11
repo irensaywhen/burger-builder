@@ -70,6 +70,7 @@ export default class BurderBuilder extends Component {
           addIngredientHandler={this.addIngredientHandler}
           removeIngredientHandler={this.removeIngredientHandler}
           disabledButtons={disabledInfo}
+          totalPrice={this.state.totalPrice}
         />
       </Fragment>
     );
