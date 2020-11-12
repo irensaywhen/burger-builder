@@ -13,8 +13,6 @@ const Burger = ({ ingredients }) => {
       return arr.concat(current);
     }, []);
 
-  console.log(transformedIngredients);
-
   if (transformedIngredients.length === 0) {
     return <p>Please start selecting engredients</p>;
   } else {

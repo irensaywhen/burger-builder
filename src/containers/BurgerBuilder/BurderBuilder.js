@@ -21,6 +21,7 @@ export default class BurderBuilder extends Component {
     },
     totalPrice: 4,
     purchasable: false,
+    purchasing: false,
   };
 
   addIngredientHandler = type => {
@@ -63,6 +64,18 @@ export default class BurderBuilder extends Component {
     });
   };
 
+  purchaseHandler = () => {
+    this.setState({ purchaing: true });
+  };
+
+  purchaseCancelHandler = () => {
+    this.setState({ purchaing: false });
+  };
+
+  purchaseContinueHandler = () => {
+    alert('Purchasing!');
+  };
+
   render() {
     const disabledInfo = {
       ...this.state.ingredients,
@@ -73,8 +86,16 @@ export default class BurderBuilder extends Component {
     }
     return (
       <Fragment>
-        <Modal>
-          <OrderSummary ingredients={this.state.ingredients} />
+        <Modal
+          show={this.state.purchaing}
+          backdropClickHandler={this.purchaseCancelHandler}
+        >
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            purchaseCancelHandler={this.purchaseCancelHandler}
+            purchaseContinueHandler={this.purchaseContinueHandler}
+            totalPrice={this.state.totalPrice}
+          />
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
@@ -83,6 +104,7 @@ export default class BurderBuilder extends Component {
           disabledButtons={disabledInfo}
           totalPrice={this.state.totalPrice}
           purchasable={this.state.purchasable}
+          purchaseHandler={this.purchaseHandler}
         />
       </Fragment>
     );
