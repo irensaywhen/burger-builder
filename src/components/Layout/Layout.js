@@ -5,11 +5,15 @@ import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 
 export default class Layout extends Component {
   state = {
-    showSideDrawer: true,
+    showSideDrawer: false,
   };
 
   closeSideDrawerHandler = () => {
     this.setState({ showSideDrawer: false });
+  };
+
+  showSideDrawerHandler = () => {
+    this.setState({ showSideDrawer: true });
   };
 
   render() {
@@ -19,7 +23,7 @@ export default class Layout extends Component {
           showSideDrawer={this.state.showSideDrawer}
           backdropClickHandler={this.closeSideDrawerHandler}
         />
-        <Toolbar />
+        <Toolbar hamburderIconClickHandler={this.showSideDrawerHandler} />
         <main className={classes.Main}>{this.props.children}</main>
       </Fragment>
     );
