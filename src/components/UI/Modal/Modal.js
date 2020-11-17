@@ -4,7 +4,10 @@ import classes from './Modal.module.css';
 
 export default class Modal extends Component {
   shouldComponentUpdate(nextProps) {
-    return nextProps.show !== this.props.show;
+    return (
+      nextProps.show !== this.props.show ||
+      nextProps.childen !== this.props.children
+    );
   }
 
   render() {
