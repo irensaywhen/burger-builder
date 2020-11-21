@@ -25,6 +25,7 @@ class BurgerBuilder extends Component {
   };
 
   componentDidMount = () => {
+    if (this.state.ingredients) return;
     axios
       .get('https://burger-builder-da262.firebaseio.com/ingredients.json')
       .then(response => {
@@ -84,29 +85,23 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinueHandler = () => {
-    this.setState({ loading: true });
-    const order = {
-      indredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'Iren Gata',
-        address: {
-          street: 'Teststreet 1',
-          zipCode: '411',
-          country: 'Russia',
-        },
-        email: 'fake@gmail.com',
-      },
-      deliveryMethod: 'fastest',
-    };
-    axios
-      .post('/orders.jso', order)
-      .then(response => {
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch(error => {
-        this.setState({ loading: false, purchasing: false });
-      });
+    const queryParams = [];
+    for (let ingredient in this.state.ingredients) {
+      queryParams.push(
+        encodeURIComponent(ingredient) +
+          '=' +
+          encodeURIComponent(this.state.ingredients[ingredient])
+      );
+    }
+
+    queryParams.push(`price=${this.state.totalPrice}`);
+
+    const queryString = queryParams.join('&');
+
+    this.props.history.push({
+      pathname: '/checkout',
+      search: '?' + queryString,
+    });
   };
 
   render() {
@@ -119,7 +114,7 @@ class BurgerBuilder extends Component {
     }
 
     const modalContent =
-      !this.state.loading || !this.ingredients ? (
+      this.state.loading || !this.state.ingredients ? (
         <Spinner />
       ) : (
         <OrderSummary
