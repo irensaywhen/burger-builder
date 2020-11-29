@@ -17,6 +17,7 @@ const BuildControls = ({
   totalPrice,
   purchasable,
   purchaseHandler,
+  isAuthenticated,
 }) => {
   return (
     <div className={classes.BuildControls}>
@@ -37,7 +38,7 @@ const BuildControls = ({
         onClick={purchaseHandler}
         disabled={!purchasable}
       >
-        Order now
+        {isAuthenticated ? 'Order now' : ' Sign up to order'}
       </button>
     </div>
   );

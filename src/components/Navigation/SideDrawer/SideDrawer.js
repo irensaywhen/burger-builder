@@ -4,7 +4,11 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrawer.module.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 
-const SideDrawer = ({ backdropClickHandler, showSideDrawer }) => {
+const SideDrawer = ({
+  backdropClickHandler,
+  showSideDrawer,
+  isAuthenticated,
+}) => {
   // Conditionally attach classes for animation
   const sideDrawerClasses = [classes.SideDrawer];
 
@@ -21,7 +25,7 @@ const SideDrawer = ({ backdropClickHandler, showSideDrawer }) => {
           <Logo />
         </div>
         <nav>
-          <NavigationItems />
+          <NavigationItems isAuthenticated={isAuthenticated} />
         </nav>
       </div>
     </Fragment>

@@ -4,7 +4,7 @@ import classes from './Toolbar.module.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import HamburgerIcon from '../HamburgerIcon/HamburgerIcon';
 
-const Toolbar = ({ hamburderIconClickHandler }) => {
+const Toolbar = ({ hamburderIconClickHandler, isAuthenticated }) => {
   return (
     <header className={classes.Toolbar}>
       <HamburgerIcon clickHandler={hamburderIconClickHandler} />
@@ -12,7 +12,7 @@ const Toolbar = ({ hamburderIconClickHandler }) => {
         <Logo />
       </div>
       <nav className={classes.DesktopOnly}>
-        <NavigationItems></NavigationItems>
+        <NavigationItems isAuthenticated={isAuthenticated}></NavigationItems>
       </nav>
     </header>
   );
