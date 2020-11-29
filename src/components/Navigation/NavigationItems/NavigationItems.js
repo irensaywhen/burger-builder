@@ -3,7 +3,6 @@ import classes from './NavigationItems.module.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 
 const NavigationItems = ({ isAuthenticated }) => {
-  console.log(isAuthenticated);
   return (
     <ul className={classes.NavigationItems}>
       <NavigationItem link='/'>Burder Bulider</NavigationItem>
