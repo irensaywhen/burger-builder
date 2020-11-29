@@ -67,11 +67,11 @@ export const fetchOrdersStart = () => {
 };
 
 // Dispatched when we click an order button
-export const fetchOrders = token => {
+export const fetchOrders = (token, userId) => {
   return dispatch => {
     dispatch(fetchOrdersStart());
     axios
-      .get(`/orders.json?auth=${token}`)
+      .get(`/orders.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`)
       .then(res => {
         const orders = [];
 

@@ -22,7 +22,6 @@ export const authFail = error => {
 };
 
 export const logout = () => {
-  debugger;
   localStorage.removeItem('token');
   localStorage.removeItem('expirationTime');
 
